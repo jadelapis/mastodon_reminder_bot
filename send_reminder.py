@@ -12,11 +12,12 @@ def post_remider():
     message = os.getenv("MESSAGE")
     current_time = datetime.now()
     greeting = "Good morning!! " if current_time.hour< 9 else "Good afternoon!! "
+    stretch_reminder ="\n\nPlease have a good strech!!" if current_time.hour== 10 else "" 
     mastodon = Mastodon(
         access_token=secret_key,
         api_base_url=instance_url,
     )
-    mastodon.status_post(f"{account}\n\n{greeting}{message}")
+    mastodon.status_post(f"{account}\n\n{greeting}{message}{stretch_reminder}")
 
 
 def main():
