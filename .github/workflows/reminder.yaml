@@ -3,8 +3,8 @@ name: Post Reminder to Mastodon
 on:
   workflow_dispatch: # Allows the workflow to be manually triggered
   schedule:
-  # the server is three hours ahead
-    - cron: '0 5,10,11,12 * * *'
+  # the server is 5 hours ahead
+    - cron: '0 3,8,10 * * *'
 
 jobs:
   post_to_mastodon:

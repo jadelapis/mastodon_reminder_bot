@@ -11,8 +11,8 @@ def post_remider():
     account = os.getenv('MASTODON_ACCOUNT')
     message = os.getenv("MESSAGE")
     current_time = datetime.now()
-    greeting = "Good morning!! " if current_time.hour< 9 else "Good afternoon!! "
-    stretch_reminder ="\n\nPlease have a good strech!!" if current_time.hour== 10 else "" 
+    greeting = "Good morning!! " if current_time.hour< 7 else "Good afternoon!! "
+    stretch_reminder ="\n\nPlease have a good strech!!" if current_time.hour== 8 else "" 
     mastodon = Mastodon(
         access_token=secret_key,
         api_base_url=instance_url,
