@@ -23,7 +23,10 @@ jobs:
 
       - name: Test
         run: |
-          echo "API_BASE_URL: ${{ secrets }}"
+          if [ -z "${{ secrets.API_BASE_URL }}" ]; then echo "API_BASE_URL is not set"; else echo "API_BASE_URL is set"; fi
+          if [ -z "${{ secrets.MASTODON_ACCOUNT }}" ]; then echo "MASTODON_ACCOUNT is not set"; else echo "MASTODON_ACCOUNT is set"; fi
+          if [ -z "${{ secrets.MESSAGE }}" ]; then echo "MESSAGE is not set"; else echo "MESSAGE is set"; fi
+          if [ -z "${{ secrets.SECRET_KEY }}" ]; then echo "SECRET_KEY is not set"; else echo "SECRET_KEY is set"; fi
 
       - name: Run script
         env:
