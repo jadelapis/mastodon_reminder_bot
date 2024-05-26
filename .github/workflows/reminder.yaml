@@ -23,9 +23,7 @@ jobs:
 
       - name: Test
         run: |
-          echo "API_BASE_URL: ${{ secrets.API_BASE_URL }}"
-          echo "MASTODON_ACCOUNT: ${{ secrets.MASTODON_ACCOUNT }}"
-          echo "MESSAGE: ${{ secrets.MESSAGE }}"
+          echo "API_BASE_URL: ${{ secrets }}"
 
       - name: Run script
         env:
