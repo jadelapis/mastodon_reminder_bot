@@ -21,6 +21,12 @@ jobs:
       - name: Install dependencies
         run: pip install python-dotenv Mastodon.py
 
+      - name: Test
+        run: |
+          echo "API_BASE_URL: ${{ secrets.API_BASE_URL }}"
+          echo "MASTODON_ACCOUNT: ${{ secrets.MASTODON_ACCOUNT }}"
+          echo "MESSAGE: ${{ secrets.MESSAGE }}"
+          
       - name: Run script
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
