@@ -23,14 +23,15 @@ jobs:
 
       - name: Test
         run: |
+          echo "API_BASE_URL: ${{ API_BASE_URL }}"
           echo "API_BASE_URL: ${{ secrets.API_BASE_URL }}"
-          echo "MASTODON_ACCOUNT: ${{ secrets.MASTODON_ACCOUNT }}"
-          echo "MESSAGE: ${{ secrets.MESSAGE }}"
-          
+          echo "MASTODON_ACCOUNT: ${{ MASTODON_ACCOUNT }}"
+          echo "MESSAGE: ${{ MESSAGE }}"
+
       - name: Run script
         env:
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
-          API_BASE_URL: ${{ secrets.API_BASE_URL }}
-          MASTODON_ACCOUNT: ${{ secrets.MASTODON_ACCOUNT }}
-          MESSAGE: ${{ secrets.MESSAGE }}
+          SECRET_KEY: ${{ SECRET_KEY }}
+          API_BASE_URL: ${{ API_BASE_URL }}
+          MASTODON_ACCOUNT: ${{ MASTODON_ACCOUNT }}
+          MESSAGE: ${{ MESSAGE }}
         run: python send_reminder.py
