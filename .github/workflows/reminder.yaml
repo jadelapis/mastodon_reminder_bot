@@ -3,7 +3,8 @@ name: Post Reminder to Mastodon
 on:
   workflow_dispatch: # Allows the workflow to be manually triggered
   schedule:
-    - cron: '0 8,12,15 * * *'
+  # the server is three hours ahead
+    - cron: '0 5,9,12 * * *'
 
 jobs:
   post_to_mastodon:
@@ -23,12 +24,6 @@ jobs:
 
       - name: Print current server time
         run: date
-
-      - name: Test secrets
-        run: |
-          echo "API_BASE_URL: ${{ secrets.API_BASE_URL }}"
-          echo "MASTODON_ACCOUNT: ${{ secrets.MASTODON_ACCOUNT }}"
-          echo "MESSAGE: ${{ secrets.MESSAGE }}"
 
       - name: Run script
         env:
