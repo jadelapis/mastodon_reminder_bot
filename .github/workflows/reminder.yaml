@@ -21,15 +21,10 @@ jobs:
       - name: Install dependencies
         run: pip install python-dotenv Mastodon.py
 
-      - name: Set current time
-        id: set_time
-        run: echo "::set-output name=current_time::$(date -u +'%Y-%m-%d %H:%M:%S')"
-
       - name: Run script
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
           API_BASE_URL: ${{ secrets.API_BASE_URL }}
           MASTODON_ACCOUNT: ${{ secrets.MASTODON_ACCOUNT }}
           MESSAGE: ${{ secrets.MESSAGE }}
-          CURRENT_TIME: ${{ steps.set_time.outputs.current_time }}
-        run: python your_script.py
+        run: python send_reminder.py
