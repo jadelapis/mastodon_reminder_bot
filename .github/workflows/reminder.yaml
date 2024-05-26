@@ -4,7 +4,7 @@ on:
   workflow_dispatch: # Allows the workflow to be manually triggered
   schedule:
   # the server is 5 hours ahead
-    - cron: '0 3,8,10 * * *'
+    - cron: '0 3,8,10,16 * * *'
 
 jobs:
   post_to_mastodon:
