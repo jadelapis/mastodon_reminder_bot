@@ -1,0 +1,35 @@
+name: Post Reminder to Mastodon
+
+on:
+  workflow_dispatch: # Allows the workflow to be manually triggered
+  schedule:
+    - cron: '0 8,12,15 * * *'
+
+jobs:
+  post_to_mastodon:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install python-dotenv Mastodon.py
+
+      - name: Set current time
+        id: set_time
+        run: echo "::set-output name=current_time::$(date -u +'%Y-%m-%d %H:%M:%S')"
+
+      - name: Run script
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          API_BASE_URL: ${{ secrets.API_BASE_URL }}
+          MASTODON_ACCOUNT: ${{ secrets.MASTODON_ACCOUNT }}
+          MESSAGE: ${{ secrets.MESSAGE }}
+          CURRENT_TIME: ${{ steps.set_time.outputs.current_time }}
+        run: python your_script.py
