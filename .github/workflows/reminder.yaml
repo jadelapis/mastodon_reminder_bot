@@ -21,12 +21,14 @@ jobs:
       - name: Install dependencies
         run: pip install python-dotenv Mastodon.py
 
-      - name: Test
+      - name: Print current server time
+        run: date
+
+      - name: Test secrets
         run: |
-          if [ -z "${{ secrets.API_BASE_URL }}" ]; then echo "API_BASE_URL is not set"; else echo "API_BASE_URL is set"; fi
-          if [ -z "${{ secrets.MASTODON_ACCOUNT }}" ]; then echo "MASTODON_ACCOUNT is not set"; else echo "MASTODON_ACCOUNT is set"; fi
-          if [ -z "${{ secrets.MESSAGE }}" ]; then echo "MESSAGE is not set"; else echo "MESSAGE is set"; fi
-          if [ -z "${{ secrets.SECRET_KEY }}" ]; then echo "SECRET_KEY is not set"; else echo "SECRET_KEY is set"; fi
+          echo "API_BASE_URL: ${{ secrets.API_BASE_URL }}"
+          echo "MASTODON_ACCOUNT: ${{ secrets.MASTODON_ACCOUNT }}"
+          echo "MESSAGE: ${{ secrets.MESSAGE }}"
 
       - name: Run script
         env:
