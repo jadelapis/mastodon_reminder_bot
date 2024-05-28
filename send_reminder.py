@@ -6,13 +6,15 @@ from datetime import datetime
 
 def post_remider():
     # Access the environment variables
-    secret_key = os.getenv('SECRET_KEY')
-    instance_url = os.getenv('API_BASE_URL')
-    account = os.getenv('MASTODON_ACCOUNT')
+    secret_key = os.getenv("SECRET_KEY")
+    instance_url = os.getenv("API_BASE_URL")
+    account = os.getenv("MASTODON_ACCOUNT")
     message = os.getenv("MESSAGE")
     current_time = datetime.now()
-    greeting = "Good morning!! " if current_time.hour< 7 else "Good afternoon!! "
-    stretch_reminder ="\n\nPlease have a good strech!!" if current_time.hour== 18 else "" 
+    greeting = "Good morning!! " if current_time.hour < 17 else "Good afternoon!! "
+    stretch_reminder = (
+        "\n\nPlease have a good strech!!" if current_time.hour == 18 else ""
+    )
     mastodon = Mastodon(
         access_token=secret_key,
         api_base_url=instance_url,
@@ -25,5 +27,5 @@ def main():
     post_remider()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
