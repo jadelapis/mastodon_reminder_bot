@@ -13,7 +13,7 @@ def post_remider():
     current_time = datetime.now()
     greeting = "Good morning!! " if current_time.hour < 17 else "Good afternoon!! "
     stretch_reminder = (
-        "\n\nPlease have a good stretch and have some water!" if current_time.hour == 18 else ""
+        "\n\nPlease have a good stretch and have some water! Maybe go for a walk if it's been a while" if current_time.hour == 18 else ""
     )
     mastodon = Mastodon(
         access_token=secret_key,
